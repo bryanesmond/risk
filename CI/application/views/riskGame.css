@@ -1,0 +1,33 @@
+#container{width:1000px;}
+
+#left{
+		float:left;
+		width:815px;
+}
+
+#right{	
+		float:right;
+		border: 5px solid;
+		width:150px;
+}
+
+#border{ 
+		border-style: solid; 
+		border-width : 5px;
+		width : 150px
+}
+
+#place{
+	border-top-width: 5px;
+	border-top-style: solid;
+}
+
+#attack{
+	border-top-width: 5px;
+	border-top-style: solid;
+}
+
+#fortify{
+	border-top-width: 5px;
+	border-top-style: solid;
+}

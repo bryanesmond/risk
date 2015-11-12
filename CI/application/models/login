@@ -1,0 +1,23 @@
+$username = $_POST['username'];
+		$password = $_POST['password'];
+		$query = "SELECT salt, password_hash FROM lab8.authentication WHERE (username=$1)";
+
+<?php namespace models;
+class login extends \core\model{
+	
+	public function __construct(){
+		parent::__construct();
+	}
+
+	public function login() {
+		return $this->_db->select('SELECT salt, password_hash FROM
+	}
+	public function allPuppies(){
+		return $this->_db->select('SELECT * FROM '.PREFIX.'puppy');
+	}
+
+	public function readPuppy($id){
+		return $this->_db->select('SELECT * FROM '.PREFIX.'puppy WHERE id = :id', array(':id'=>$id));
+	}
+}
+?>
