@@ -1,7 +1,7 @@
 
 <h1>Log In</h1>
 <!--code igniter handling args/form open and base_url-->
-<php?  $this->load->helper('form');
+<?php  $this->load->helper('form');
 	$form_attributes = array('class' => 'login', 'id' => 'login');
 	echo form_open('welcome/index', $form_attributes);
 	$user_data = array('name' => 'username',
