@@ -7,7 +7,7 @@ class Welcome extends CI_Controller {
 	*
 	* Maps to the following URL
 	* http://example.com/index.php/welcome
-	*- or -  
+	*- or -
 	* http://example.com/index.php/welcome/index
 	*- or -
 	* Since this controller is set as the default controller in
@@ -23,7 +23,7 @@ class Welcome extends CI_Controller {
 	* $response = $this->course->$method($args);
 	* json_encode($response)
 	*/
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -36,31 +36,31 @@ class Welcome extends CI_Controller {
 
 
 	}
-	
+
 	public function index()
 	{
 		$loggedin = $this->session->userdata('loggedin');
 		$loggedin = FALSE;
 		if ($loggedin == FALSE) {
 			$this->load->view('index');
-			if(isset($_POST['username']) && isset($_POST['password'])) 
+			if(isset($_POST['username']) && isset($_POST['password']))
 			{
 				//echo 'username/password set!<br />';
 				//echo $_POST['username'];
 				//echo '<br />';
 				//echo $_POST['password'];
-	
+
 				$username = $_POST['username'];
 				$password = $_POST['password'];
-	
+
 				$data = $this->Login->login($username, $password);
-	
+
 				//$this->db->select('salt, password_hash');
 				//$this->db->from('authentication');
 				//$this->db->where('username', $username);
 				//$this->db->where('password_hash', $this->encrypt->sha1($password));
 				//$query = $this->db->get('authentication', 1);
-			
+
 				//echo $query->num_rows();
 				echo $data;
 
@@ -72,7 +72,7 @@ class Welcome extends CI_Controller {
 								'username'      => $username,
 								'loggedin'        => TRUE
 								));
-								
+
 							/*echo "log in work";
 							echo "<br><br>";
 							$redirect_attributes = array('class' => 'redirect', 'id' => 'redirect');
@@ -81,13 +81,13 @@ class Welcome extends CI_Controller {
 							echo form_submit($redirect_data);
 							echo form_close();*/
 							redirect('/lobbycon/index', 'refresh');
-						
+
 						}
 						else {
 							//login didn't work
 							echo " login did not work";
 						}
-					
+
 			}
 			else {
 				echo 'Please Enter a Username and Password';
@@ -96,24 +96,24 @@ class Welcome extends CI_Controller {
 		else {
 			redirect('/lobbycon/index', 'refresh');
 		}
-		
+
 
 	}
 	
 
-	public function register() 
+	public function register()
 	{
 		$loggedin = $this->session->userdata('loggedin');
-		
+
 		if ($loggedin == FALSE) {
 				$this->load->view('registration');
-				if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm_pass'])) 
+				if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm_pass']))
 				{
 
 					$username = ($_POST['username']);
 					$password = ($_POST['password']);
 					$confirm_pass = ($_POST['confirm_pass']);
-		
+
 					if($password != $confirm_pass)
 						die ('Passwords do not match');
 					if($username == NULL || $password == NULL || $confirm_pass == NULL)
@@ -123,20 +123,20 @@ class Welcome extends CI_Controller {
 					$pwSalt = $salt.$password;
 					$hash = $this->encrypt->sha1($password);
 
-		
+
 					//$register_query = array(
 					//	'username' => $username ,
 					//	'password_hash' => $hash ,
 					//	'pwsalt' => $pwSalt,
 					//	'salt' => $salt
 					//);
-		
+
 					//$this->db->select('username');
 					//$this->db->where('username', $username);
 					//$query = $this->db->get('authentication', 1);
 
 					$data = $this->Login->check($username);
-		
+
 
 					if ($data != 0) {
 						echo "Username already exists. Please try again.";
@@ -151,18 +151,18 @@ class Welcome extends CI_Controller {
 		else {
 			redirect('/lobbycon/index', 'refresh');
 		}
-				 
-			
+
+
 	}
-	
+
 	public function logout() {
-			
+
 				$this->session->sess_destroy();
 				redirect('/welcome/index', 'refresh');
 	}
-	
-	
-} 
+
+
+}
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
